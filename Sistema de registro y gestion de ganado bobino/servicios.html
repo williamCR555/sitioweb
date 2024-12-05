@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Estilos generales */
+        body {
+            background: linear-gradient(to right, #4A90E2, #9B59B6); /* Gradiente de azul a morado */
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        /* Estilos para el header */
+        header {
+            background: linear-gradient(45deg, #00bcd4, #4caf50); /* Gradiente de azul a verde */
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            font-family: 'Roboto', sans-serif; /* Tipografía moderna */
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 1px; /* Espaciado entre letras */
+            margin: 0;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos para los cards de los servicios */
+        .service-card {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 20px;
+            color: #34495e; /* Color de texto principal */
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card h5 {
+            color: #4caf50; /* Título en verde */
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #555; /* Texto descripciones */
+        }
+
+        .btn-primary {
+            background-color: #4A90E2; /* Azul para los botones */
+            border-color: #4A90E2;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ABD; /* Hover más oscuro */
+            border-color: #357ABD;
+            transform: scale(1.05); /* Efecto de aumentar el tamaño */
+        }
+
+        .row-cols-1 {
+            margin-top: 30px;
+        }
+
+        .row-cols-md-2 {
+            margin-top: 30px;
+        }
+
+        .text-center {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Estilos para el footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-radius: 10px;
+        }
+
+        /* Estilos para la sección de contacto */
+        .contact-section {
+            background-color: #4caf50; /* Fondo verde */
+            padding: 40px;
+            margin-top: 50px;
+            border-radius: 10px;
+        }
+
+        .contact-section h3 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section .btn-primary {
+            background-color: #fff;
+            color: #4caf50;
+            border-color: #4caf50;
+        }
+
+        .contact-section .btn-primary:hover {
+            background-color: #357ABD;
+            color: #fff;
+        }
+          /* Estilo para el botón de "Volver" con verde clarito */
+.btn-volver {
+    background-color: #66bb6a; /* Verde clarito */
+    border-color: #66bb6a;
+    color: white; /* Texto blanco */
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-volver:hover {
+    background-color: #4caf50; /* Verde más oscuro al hacer hover */
+    border-color: #4caf50;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenidos a Nuestros Servicios</h1>
+    </header>
+
+    <div class="container">
+        <h1 class="text-center">Nuestros Servicios</h1>
+        <p class="text-center">Ofrecemos una variedad de servicios diseñados para satisfacer las necesidades de nuestros clientes. A continuación, te presentamos algunos de los servicios que proporcionamos:</p>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
+            <!-- Servicio 1: Venta de Productos de Granja -->
+            <div class="col">
+                <div class="service-card">
+                    <h5>Venta de Productos de Granja</h5>
+                    <p>Ofrecemos una amplia gama de productos frescos de la granja, como huevos frescos, leche, carnes, frutas y verduras. Trabajamos directamente con productores locales para garantizar calidad y frescura en cada producto.</p>
+                </div>
+            </div>
+        
+            <!-- Servicio 2: Asesoría en Gestión de Granjas -->
+            <div class="col">
+                <div class="service-card">
+                    <h5>Asesoría en Gestión de Granjas</h5>
+                    <p>Te ofrecemos consultoría especializada para optimizar la gestión de tu granja, desde la producción hasta la comercialización. Nuestro equipo te ayuda a mejorar la eficiencia de tus operaciones y aumentar la rentabilidad.</p>
+                </div>
+            </div>
+        
+            <!-- Servicio 3: Uso de RFID en el Manejo de Ganado -->
+            <div class="col">
+                <div class="service-card">
+                    <h5>Uso de RFID en el Manejo de Ganado</h5>
+                    <p>Implementamos tecnología avanzada de identificación por radiofrecuencia (RFID) para el monitoreo y gestión eficiente de tu ganado. Con el uso de etiquetas RFID, podrás rastrear la salud, el comportamiento y la productividad de cada animal, mejorando la trazabilidad y optimizando la administración de tu granja.</p>
+                </div>
+            </div>
+
+            <!-- Servicio 4: Registro y Control de Ganado -->
+            <div class="col">
+                <div class="service-card">
+                    <h5>Registro y Control de Ganado</h5>
+                    <p>Te ayudamos a llevar un registro detallado de tu ganado, incluyendo su salud, productividad y genealogía. Nuestro sistema facilita el control y monitoreo de tus animales, asegurando trazabilidad y gestión eficiente.</p>
+                </div>
+            </div>
+        
+            <!-- Servicio 5: Creación de Base de Datos de Ganado -->
+            <div class="col">
+                <div class="service-card">
+                    <h5>Creación de Base de Datos de Ganado</h5>
+                    <p>Te ayudamos a crear y gestionar una base de datos detallada de tu ganado, lo que te permitirá llevar un control eficiente sobre la salud, el historial reproductivo, la alimentación y el rendimiento de cada animal. Nuestro sistema de gestión facilita la organización de la información y la toma de decisiones en tu granja.</p>
+                </div>
+            </div>
+
+            <!-- Servicio 6: Recetas con Productos de la Granja -->
+            <div class="col">
+                <div class="service-card">
+                    <h5>Recetas con Productos de la Granja</h5>
+                    <p>Te ofrecemos recetas sencillas y deliciosas utilizando productos frescos de la granja. Aprende a preparar platillos nutritivos y sabrosos con nuestros ingredientes frescos, ideales para toda la familia.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Contacto -->
+        <div class="contact-section text-center">
+            <h3>¿Quieres saber más?</h3>
+            <p>Si deseas obtener más información sobre alguno de nuestros servicios o necesitas asesoría personalizada, no dudes en ponerte en contacto con nosotros. ¡Estamos aquí para ayudarte a hacer crecer tu proyecto rural!</p>
+            <a href="contacto.html" class="btn btn-primary">Contáctanos</a>
+        </div>
+    </div>
+<!-- Botón Volver (Servicios) -->
+<div class="text-center mt-5">
+    <a href="javascript:window.history.back();" class="btn btn-secondary btn-lg">Volver</a>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Tu Empresa | Todos los derechos reservados</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegus - Hortalizas Orgánicas</title>
+    <style>
+    /* Estilos generales del menú */
+    
+/* Estilo global para el body */
+body {
+    background-color: #d2f0c1; /* Fondo verde claro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Barra de navegación principal */
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(26, 61, 43, 0.8); /* Verde oscuro semi-transparente */
+}
+
+/* Estilos de los elementos del menú */
+.nav-item {
+    margin: 0 20px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: #fff;
+    background-color: rgba(21, 90, 59, 0.8); /* Verde más oscuro semi-transparente */
+    border-radius: 5px;
+}
+
+/* Estilos para los íconos de redes sociales */
+.social-link {
+    margin-left: 20px;
+}
+
+.social-icon {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover .social-icon {
+    transform: scale(1.1); /* Efecto de aumento al pasar el cursor */
+}
+
+/* Barra de navegación secundaria */
+.secondary-nav {
+    background-color: rgba(21, 90, 59, 0.9); /* Verde más oscuro semi-transparente */
+    padding: 12px 0;
+    text-align: center;
+}
+
+.secondary-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 25px;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.secondary-nav a:hover {
+    color: rgba(26, 61, 43, 0.9); /* Verde claro semi-transparente */
+    background-color: rgba(255, 255, 255, 0.8); /* Blanco semi-transparente */
+    border-radius: 5px;
+}
+
+/* Estilo de la sección del banner */
+.home-banner {
+    position: relative;
+}
+
+.carousel-item {
+    position: relative;
+    display: block;
+}
+
+.carousel-img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.carousel-text h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.carousel-text p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Estilo de los botones */
+.btn-green {
+    background-color: rgba(76, 175, 80, 0.8); /* Verde vibrante semi-transparente */
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Efecto hover para los botones */
+.btn-green:hover {
+    background-color: rgba(69, 160, 73, 0.8); /* Verde más oscuro semi-transparente */
+    transform: translateY(-3px);
+}
+
+/* Efecto de enfoque cuando el botón recibe el foco (para accesibilidad) */
+.btn-green:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(72, 153, 45, 0.5);
+}
+
+/* Estilo responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+
+    .nav-item a {
+        padding: 8px 15px;
+        font-size: 1rem;
+    }
+
+    .social-link {
+        margin-top: 15px;
+    }
+
+    .secondary-nav a {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+.home-banner {
+    position: relative;
+}
+
+.carousel-item {
+    position: relative;
+    display: block;
+}
+
+.carousel-img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;  /* Puedes ajustar el tamaño */
+    max-width: 600px; /* Limitar el ancho máximo */
+}
+
+.carousel-text h2 {
+    font-size: 2rem; /* Tamaño de la fuente */
+    color: #333; /* Color del texto */
+}
+
+.carousel-text p {
+    font-size: 1.2rem; /* Tamaño del texto */
+    color: #555; /* Color del texto */
+}
+/* Estilo de los botones */
+.btn-green {
+    background-color: #4CAF50; /* Fondo verde vibrante */
+    color: white; /* Texto blanco */
+    padding: 12px 24px; /* Espaciado interno */
+    text-decoration: none; /* Quitar subrayado */
+    border-radius: 30px; /* Bordes redondeados */
+    font-size: 1.1rem; /* Tamaño de fuente */
+    display: inline-block; /* Para que los botones se alineen horizontalmente */
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+
+/* Efecto hover: cambio de color y ligeramente mayor */
+.btn-green:hover {
+    background-color: #45a049; /* Verde más oscuro */
+    transform: translateY(-3px); /* Levantar ligeramente el botón */
+}
+
+/* Efecto de enfoque cuando el botón recibe el foco (para accesibilidad) */
+.btn-green:focus {
+    outline: none; /* Elimina el borde por defecto */
+    box-shadow: 0 0 0 2px rgba(72, 153, 45, 0.5); /* Sombra verde para enfoque */
+}
+/* Estilo base para las secciones */
+.content-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 40px 0;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.content-section h3 {
+    font-size: 1.8rem;
+    color: #1a3d2b; /* Verde oscuro */
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.content-section p {
+    font-size: 1rem;
+    color: #555; /* Gris suave para el texto */
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.content-section a {
+    text-decoration: none;
+    background-color: #4CAF50; /* Verde vibrante */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.content-section a:hover {
+    background-color: #45a049; /* Verde más oscuro */
+    transform: translateY(-3px);
+}
+
+/* Estilos para las cápsulas (tarjetas) */
+.content-section > div {
+    width: 45%; /* Cada tarjeta ocupa el 45% del ancho del contenedor */
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(76, 175, 80, 0.1); /* Fondo verde claro semi-transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada para un efecto de profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para las cápsulas */
+.content-section > div:hover {
+    transform: translateY(-5px); /* Levantar la cápsula ligeramente */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más profunda en hover */
+}
+
+/* Estilo para las listas de productos */
+.content-section ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.1rem;
+}
+
+.content-section ul li {
+    margin-bottom: 10px;
+    color: #333; /* Color más oscuro para los ítems de la lista */
+}
+
+/* Responsive design para pantallas pequeñas */
+@media (max-width: 768px) {
+    .content-section {
+        flex-direction: column; /* Hacer que las secciones se apilen verticalmente */
+        padding: 10px;
+    }
+
+    .content-section > div {
+        width: 100%; /* Cada tarjeta ocupa el 100% del ancho */
+        margin-bottom: 20px; /* Ajustamos el espacio entre las tarjetas */
+    }
+}
+
+/* Estilo para la imagen de la línea de división */
+.line-icon {
+    display: block; 
+    margin: 20px auto; 
+    width: 100%; 
+    max-width: 800px; 
+    height: auto; 
+}
+/* Estilo para el título h1 */
+.text-uppercase {
+    font-size: 2.5rem; /* Tamaño grande para el título */
+    font-weight: bold; /* Poner el texto en negrita */
+    text-transform: uppercase; /* Convertir el texto a mayúsculas */
+    color: #1a3d2b; /* Verde oscuro para el título */
+    text-align: center; /* Centrar el título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+/* Estilo para el párrafo p */
+p {
+    font-size: 1.2rem; /* Tamaño adecuado para el texto */
+    color: #555; /* Gris suave para el párrafo */
+    line-height: 1.6; /* Espaciado de línea para mejorar la legibilidad */
+    text-align: center; /* Centrar el párrafo */
+    margin: 0 15px; /* Espaciado a los lados para evitar que el texto toque los bordes */
+}
+
+/* Estilo para el texto en negrita dentro del párrafo */
+p strong {
+    font-weight: bold; /* Asegura que el texto en strong esté en negrita */
+    color: #1a3d2b; /* Verde oscuro para resaltar */
+}
+
+/* Estilo responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+    .text-uppercase {
+        font-size: 2rem; /* Reducir tamaño en pantallas pequeñas */
+    }
+
+    p {
+        font-size: 1rem; /* Reducir tamaño del párrafo en pantallas pequeñas */
+        text-align: left; /* Alinear a la izquierda en pantallas pequeñas */
+    }
+}
+/* Estilos generales para la sección de productos */
+.home-productos {
+    padding: 40px 0; /* Espaciado superior e inferior para la sección */
+}
+
+.galeriaProductos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+.product-item {
+    width: calc(33.333% - 20px); /* Tres productos por fila con un margen entre ellos */
+    box-sizing: border-box; /* Asegura que el margen no afecte el ancho */
+    overflow: hidden; /* Asegura que la imagen no se desborde */
+    border-radius: 8px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco para el producto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.product-item:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño del producto al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al pasar el mouse */
+}
+
+.product-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+.product-box img {
+    width: 100%; /* Las imágenes ocupan el 100% del ancho de su contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 5px; /* Bordes redondeados para las imágenes */
+    object-fit: cover; /* Hace que la imagen se ajuste sin deformarse */
+    max-height: 200px; /* Limita la altura máxima de la imagen */
+}
+
+.product-box p {
+    margin-top: 10px; /* Espacio entre la imagen y el texto */
+    font-size: 1.1rem; /* Tamaño de fuente adecuado */
+    font-weight: bold; /* Pone el texto en negrita */
+    text-align: center; /* Centra el texto */
+    color: #333; /* Color oscuro para el texto */
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .product-item {
+        width: calc(50% - 20px); /* Dos productos por fila en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 576px) {
+    .product-item {
+        width: 100%; /* Un solo producto por fila en pantallas muy pequeñas */
+    }
+}
+
+/* Estilos generales para la sección de línea de división */
+.img-fluid {
+    max-width: 100%; /* Asegura que las imágenes no se desborden */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.my-5 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+/* Estilos para la sección de Marcas */
+#home-marcas {
+    position: relative;
+    min-height: 200px; /* Altura mínima para la sección */
+    padding: 40px 0; /* Espaciado superior e inferior */
+    background-color: #f9f9f9; /* Fondo suave para la sección */
+}
+
+#home-marcas p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px; /* Espacio entre el texto y las marcas */
+    color: #333; /* Color del texto */
+}
+
+/* Estilos para el contenedor de la galería de marcas */
+.galeriaMarcas {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espacio entre las marcas */
+    flex-wrap: wrap; /* Permite que las marcas se ajusten cuando sea necesario */
+    align-items: center;
+}
+
+.galeriaMarcas .item {
+    max-width: 150px; /* Tamaño máximo de las imágenes de las marcas */
+    width: 100%; /* Las imágenes ocupan el 100% del contenedor disponible */
+    padding: 10px; /* Un poco de espacio alrededor de las imágenes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.galeriaMarcas .item img {
+    max-width: 100%; /* Asegura que las imágenes se ajusten al contenedor */
+    height: auto; /* Mantiene la proporción de las imágenes */
+    object-fit: contain; /* Asegura que las imágenes no se deformen */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .galeriaMarcas {
+        justify-content: space-evenly; /* Ajusta las marcas con un espacio igual entre ellas */
+    }
+
+    .galeriaMarcas .item {
+        max-width: 120px; /* Ajusta el tamaño máximo de las imágenes en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 576px) {
+    .galeriaMarcas {
+        flex-direction: column; /* Coloca las marcas en una columna en pantallas muy pequeñas */
+        align-items: center; /* Centra las imágenes */
+    }
+
+    .galeriaMarcas .item {
+        max-width: 100px; /* Ajusta aún más el tamaño de las imágenes */
+        margin-bottom: 20px; /* Espacio entre las marcas */
+    }
+}
+/* Estilos generales para la sección de Tips de Alimentación */
+#home-tips {
+    position: relative;
+    min-height: 400px; /* Altura mínima de la sección */
+    padding: 60px 0; /* Espaciado superior e inferior */
+    background-color: #f9f9f9; /* Fondo suave */
+}
+
+#home-tips h1 {
+    font-size: 2.5rem; /* Tamaño de fuente del título */
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.line-icon {
+    max-width: 150px; /* Tamaño de la línea separadora */
+    margin: 0 auto 40px; /* Centramos la línea horizontal */
+    display: block;
+}
+
+/* Estilo para la cita */
+#home-tips .text-center p {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #555;
+    margin-top: 20px; /* Espacio superior de la cita */
+}
+
+/* Estilo para las tarjetas de recetas */
+.galeriaTips {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Permite que las recetas se ajusten en pantallas más pequeñas */
+}
+
+.galeriaTips .item {
+    width: 100%;
+    max-width: 320px; /* Limita el ancho de cada tarjeta */
+    margin-bottom: 30px; /* Espacio entre las tarjetas */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave para las tarjetas */
+    overflow: hidden; /* Para que las imágenes y el texto no sobresalgan */
+    background-color: #fff; /* Fondo blanco para cada receta */
+    transition: transform 0.3s ease; /* Efecto de transición en hover */
+}
+
+.galeriaTips .item:hover {
+    transform: translateY(-5px); /* Levanta la tarjeta cuando se pasa el cursor sobre ella */
+}
+
+.galeriaTips .item .border-gray {
+    border: 1px solid #ddd; /* Borde suave alrededor de la tarjeta */
+    border-radius: 10px;
+}
+
+.galeriaTips .item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Cubre el área del contenedor sin deformarse */
+}
+
+.galeriaTips .text-box {
+    padding: 15px;
+    text-align: center; /* Centra el texto dentro de la tarjeta */
+}
+
+.galeriaTips .text-box h4 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; /* Espacio entre el título y la descripción */
+}
+
+.galeriaTips .text-box p {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.galeriaTips .text-box a {
+    font-size: 1.1rem;
+    color: #4CAF50; /* Color verde para los enlaces */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.galeriaTips .text-box a:hover {
+    color: #388e3c; /* Cambio de color al pasar el cursor */
+}
+
+/* Estilo para el botón de "Ver más" */
+.btn-green {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-green:hover {
+    background-color: #45a049;
+    transform: translateY(-3px); /* Efecto de elevación */
+}
+
+/* Ajustes de alineación y espaciado para la sección */
+#home-tips .container {
+    text-align: center; /* Centramos el contenido */
+    padding-bottom: 60px; /* Espacio inferior para mayor separación */
+}
+
+#home-tips .text-center {
+    margin-top: 20px; /* Mejoramos el espacio entre la cita y las recetas */
+}
+
+#home-tips .btn-green {
+    margin-top: 40px; /* Añadimos un margen superior para acercar el botón a la parte superior */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .galeriaTips {
+        justify-content: space-evenly; /* Asegura que las tarjetas tengan un espacio uniforme */
+    }
+
+    .galeriaTips .item {
+        max-width: 280px; /* Ajusta el tamaño de las tarjetas en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 576px) {
+    .galeriaTips .item {
+        max-width: 100%; /* Las tarjetas ocuparán el 100% del ancho disponible en pantallas muy pequeñas */
+        margin-bottom: 20px;
+    }
+
+    #home-tips h1 {
+        font-size: 1.75rem; /* Ajusta el tamaño del título en pantallas muy pequeñas */
+    }
+}
+/* Estilo para la línea de separación (separadores) */
+.line-icon {
+    max-width: 100%; /* Asegura que el separador ocupe el ancho completo disponible */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block;
+    margin: 0 auto 40px; /* Centramos la línea horizontal y dejamos espacio debajo */
+}
+
+/* Estilo para los separadores de las secciones */
+#home-tips .line-icon {
+    max-width: 250px; /* Tamaño adecuado para la línea en la sección de tips */
+    width: 100%;
+    margin: 20px auto; /* Centra la imagen y añade margen superior e inferior */
+}
+
+#home-marcas .line-icon {
+    max-width: 300px; /* Tamaño adecuado para la línea en la sección de marcas */
+    width: 100%;
+    margin: 20px auto; /* Centra la imagen y añade margen superior e inferior */
+}
+/* Estilo general para las secciones */
+.section {
+    margin-bottom: 60px;
+    padding: 40px 0;
+    text-align: center;
+}
+
+/* Estilo para los separadores (líneas de división) */
+.line-icon {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 40px;
+}
+
+/* Estilo específico para las líneas de separación en cada sección */
+#home-tips .line-icon,
+#home-marcas .line-icon {
+    max-width: 250px; /* Ajusta el tamaño de la línea en la sección de tips */
+    width: 100%;
+    margin: 20px auto; /* Centra la línea con margen superior e inferior */
+}
+
+/* Títulos principales */
+h1, h2, h3 {
+    font-size: 2.5rem; /* Ajusta el tamaño del texto */
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Subtítulos o párrafos */
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+/* Estilo para los botones */
+.btn-green {
+    background-color: #4CAF50; /* Fondo verde vibrante */
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* Efecto hover para el botón */
+.btn-green:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+}
+
+/* Estilos para las secciones de productos (Galería) */
+.home-productos .product-item {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.product-item .product-box {
+    width: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product-item .product-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product-item .product-box p {
+    background-color: #f4f4f4;
+    padding: 10px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.product-item:hover .product-box {
+    transform: scale(1.05);
+}
+
+/* Estilo de la galería de marcas */
+.galeriaMarcas .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.galeriaMarcas img {
+    max-width: 150px; /* Tamaño adecuado para las marcas */
+    height: auto;
+    margin: 20px;
+}
+
+/* Estilo para las recetas en la sección de tips */
+.galeriaTips .item {
+    margin: 10px;
+}
+
+.galeriaTips .border-gray {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.galeriaTips .border-gray:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.galeriaTips .text-box {
+    padding: 15px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.galeriaTips .text-box h4 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.galeriaTips .text-box p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.galeriaTips .text-box a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.galeriaTips .text-box a:hover {
+    text-decoration: underline;
+}
+
+/* Ajustes para el carrusel de tips */
+.owl-carousel .owl-nav, .owl-carousel .owl-dots {
+    display: none; /* Oculta los controles del carrusel */
+}
+
+.owl-carousel .item {
+    display: inline-block;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.owl-carousel .item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Estilos adicionales */
+.container {
+    padding: 0 15px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Estilo para la sección de "Tips de Alimentación" */
+#home-tips {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+}
+
+#home-tips h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+#home-tips p {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+}
+
+#home-tips .my-5 {
+    margin: 40px 0;
+}
+
+
+
+    </style>
+    <!-- Menú Desktop -->
+    <ul class="nav-menu">
+      <li class="nav-item"><a href=>HOME</a></li>
+      <li class="nav-item"><a href="indexx.html">GANADOLOGIA</a></li>
+      <li class="nav-item"><a href="Productos.html">PRODUCTOS</a></li>
+      <li class="nav-item"><a href="recetas.html">RECETAS</a></li>
+      <li class="nav-item"><a href="servicios.html">SERVICIOS</a></li>
+      <li class="nav-item"><a href="contacto.html">CONTACTO</a></li>
+  
+      <!-- Redes Sociales -->
+      <li class="nav-item social-link">
+          <a target="_blank" href="https://www.instagram.com/cwilliamc_/profilecard/?igsh=ZGdkMGtjZW84Y20z">
+              <img class="social-icon" src="https://vegus.cl/wp-content/uploads/2021/11/instagram.png" alt="Instagram">
+          </a>
+      </li>
+      <li class="nav-item social-link">
+          <a target="_blank" href="https://www.facebook.com/vegus.ltda/">
+              <img class="social-icon" src="https://vegus.cl/wp-content/uploads/2021/11/facebook.png" alt="Facebook">
+          </a>
+      </li>
+  </ul>
+  
+  <!-- Segunda barra de navegación -->
+  <nav class="secondary-nav">
+      <a href="#quienes-somos">¿Quiénes somos?</a>
+      <a href="#productos">Nuestros Productos</a>
+  </nav>
+  
+        <!-- Sección Hero -->
+        <section class="home-banner">
+          <div class="carousel">
+              <div class="carousel-item">
+                  <picture>
+                      <img src="https://vegus.cl/wp-content/uploads/2021/11/vegus-slider-1.jpg" class="carousel-img" alt="Inicio">
+                      <div class="carousel-text">
+                          <h2>Bienvenidos a SUNNY VALLEY</h2>
+                          <p>La calidad y frescura de nuestras hortalizas y el bienestar de nuestro ganado son nuestro sello.</p>
+                      </div>
+                  </picture>
+              </div>
+          </div>
+      </section>
+      
+
+
+        
+
+      
+      <div class="carousel-item">
+        <picture>
+          <img src="https://vegus.cl/wp-content/uploads/2022/01/banner-vegus-2.jpg" class="carousel-img" alt="Inicio">
+        </picture>
+        <div class="carousel-text">
+          <h1>Comprometidos con la naturaleza y el bienestar animal.<br> ¡Sostenibilidad y calidad en cada cosecha y en cada ganado!</h1>
+          <p>En <strong>Sunny Valley</strong>, nos especializamos en producir alimentos orgánicos de la más alta calidad, cuidando con responsabilidad a nuestro ganado y trabajando con respeto hacia el medio ambiente. Creemos que el bienestar animal es esencial para una agricultura saludable. Únete a nosotros en el camino hacia un futuro más saludable, sostenible y ético.</p>
+          <a class="btn-green" href="Productos.html">VER PRODUCTOS</a>
+          <a class="btn-green" href="servicios.html">NUESTROS SERVICIOS</a>
+          
+      </div>
+    </div>
+  </section>
+<body>
+    
+
+    
+    
+        <!-- Sección Quiénes Somos -->
+        <section id="quienes-somos" class="content-section">
+            <div>
+                <h3>¿Quiénes somos?</h3>
+                <p><strong>Sunny Valley</strong> es una empresa familiar chilena dedicada a la agricultura orgánica y al cuidado responsable de nuestro ganado. Nos apasiona cultivar hortalizas de la más alta calidad y criar a nuestros animales de manera ética y sostenible. Creemos que un futuro saludable comienza con el respeto por la naturaleza y los seres vivos.</p>
+            </div>
+            <div>
+                <h3>Nuestra Misión</h3>
+                <p>En <strong>Sunny Valley</strong>, nuestra misión es ofrecer productos orgánicos frescos, de calidad superior, a todas las familias de Chile, promoviendo la sostenibilidad y el bienestar animal. A través de prácticas agrícolas responsables y la crianza ética de nuestro ganado, buscamos contribuir a la salud del planeta y de sus habitantes.</p>
+            </div>
+        </section>
+    
+        <!-- Sección Productos -->
+        <section id="productos" class="content-section">
+            <div>
+                <h3>Productos</h3>
+                <p>En <strong>Sunny Valley</strong> nos especializamos en producir hortalizas orgánicas frescas, cultivadas con técnicas que respetan la naturaleza. Además, nuestro compromiso con el bienestar animal nos lleva a criar a nuestro ganado bajo los más altos estándares de cuidado, garantizando productos éticos y sostenibles. ¡Descubre nuestra variedad de productos y únete a la revolución orgánica!</p>
+               
+            </div>
+        </section>
+    </main>
+    
+
+        <section id="productos" class="content-section">
+            <div>
+                <h3>Productos</h3>
+                <ul>
+                    <li>-Lechuga Orgánica</li>
+                    <li>-Tomates Orgánicos</li>
+                    <li>-Zanahorias Orgánicas</li>
+                    <li>-Espárragos Orgánicos</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Beneficios</h3>
+                <p>El consumo de nuestros productos orgánicos ayuda a mejorar la salud y el bienestar, protegiendo el medio ambiente.</p>
+            </div>
+        </section>
+
+      
+    </main>
+
+    
+</script>
+<meta name="facebook-domain-verification" content="rml4vf4hxuvix4wgg8wb1rfdzabh02" />
+
+
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=651155205920490&ev=PageView&noscript=1"/>
+</noscript>
+
+</head>
+<body class="home page-template page-template-index page-template-index-php page page-id-10">
+
+  <header class="header">
+    
+
+  
+    <img class="line-icon" src="https://vegus.cl/wp-content/themes/Vegus/sources/img/linea-division-nosotros.png" alt="Inicio">
+  
+      <!-- Second Slide -->
+      <div class="carousel-item">
+        <picture>
+          <img src="https://vegus.cl/wp-content/uploads/2022/01/Big-banner-vegus.jpg" class="carousel-img" alt="Inicio">
+        </picture>
+        <div class="carousel-text">
+          <h1>Sólo productos <br> responsables</h1>
+       
+          <p>En Sunny Valley trabajamos sólo con productos responsables, que cumplan con nuestros estándares y certificaciones, garantizando lo mejor para la salud y el medio ambiente.</p>
+      <br>
+          <a class="btn-green" href="Productos.html">VER PRODUCTOS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Nosotros Section -->
+  <section class="home-nosotros my-5">
+    <div class="container text-center">
+      <img class="line-icon" src="https://vegus.cl/wp-content/themes/Vegus/sources/img/linea-division-nosotros.png" alt="Inicio">
+      <h1 class="text-uppercase">Alimentación consciente</h1>
+      
+      <p><strong>Algunos de nuestros poductos que tenemos disponibles en el mercado.</strong><br>Somos referentes en el mercado de supermercados y comprometidos con la salud, la sostenibilidad y el cuidado del medio ambiente.</p>
+      
+    </div>
+  </section>
+  
+  <!-- Productos Section -->
+  <section class="home-productos my-3">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-5 col-md-12 text-white position-relative">
+          
+        
+            
+          </div>
+        </div>
+        <div class="col-md-7 d-flex align-items-center">
+          <div class="galeriaProductos owl-carousel">
+            <div class="product-item">
+              <a href="papas.html">
+                <div class="product-box">
+                  <img src="https://vegus.cl/wp-content/uploads/2021/11/Apio-1.jpg" alt="Apio">
+                  <p>Apio</p>
+                </div>
+              </a>
+            </div>
+            <div class="product-item">
+              <a href="apio.html">
+                <div class="product-box">
+                  <img src="https://vegus.cl/wp-content/uploads/2021/11/Apio-Varas-1.jpg" alt="Apio Varas">
+                  <p>Apio Varas</p>
+                </div>
+              </a>
+            </div>
+            <div class="product-item">
+              <a href="cebollin.html">
+                <div class="product-box">
+                  <img src="https://vegus.cl/wp-content/uploads/2021/11/Cebollin-1.jpg" alt="Cebollín">
+                  <p>Cebollín</p>
+                </div>
+              </a>
+            </div>
+            <div class="product-item">
+              <a href="espinaca.html">
+                <div class="product-box">
+                  <img src="https://vegus.cl/wp-content/uploads/2021/11/Espinaca-1.jpg" alt="Espinaca">
+                  <p>Espinaca</p>
+                </div>
+              </a>
+            </div>
+            <div class="product-item">
+              <a href="limon.html">
+                <div class="product-box">
+                  <img src="https://vegus.cl/wp-content/uploads/2021/11/Limon-1.jpg" alt="Limón">
+                  <p>Limón</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <img class="line-icon" src="https://vegus.cl/wp-content/themes/Vegus/sources/img/linea-division-nosotros.png" alt="Inicio">
+
+<!-- Sección de Marcas -->
+<section class="position-relative min-height-container my-3" id="home-marcas">
+  <div class="container text-center">
+    <p>Donde nos encuentras:</p>
+    <div class="galeriaMarcas owl-carousel owl-theme">
+      <!-- Marca 1 -->
+      <div class="item">
+        <picture>
+          <img src="https://vegus.cl/wp-content/uploads/2021/11/jumbo.png" class="img-fluid" alt="Jumbo">
+        </picture>
+      </div>
+      <!-- Marca 2 -->
+      <div class="item">
+        <picture>
+          <img src="https://vegus.cl/wp-content/uploads/2021/11/unimarc.png" class="img-fluid" alt="Unimarc">
+        </picture>
+      </div>
+      <!-- Marca 3 -->
+      <div class="item">
+        <picture>
+          <img src="https://vegus.cl/wp-content/uploads/2021/11/cornershop.png" class="img-fluid" alt="Cornershop">
+        </picture>
+      </div>
+      <!-- Marca 4 -->
+      <div class="item">
+        <picture>
+          <img src="https://vegus.cl/wp-content/uploads/2021/11/mercado-organico.png" class="img-fluid" alt="Mercado Orgánico">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<img class="line-icon" src="https://vegus.cl/wp-content/themes/Vegus/sources/img/linea-division-nosotros.png" alt="Inicio">
+
+
+
+<!-- Sección de Tips de Alimentación -->
+<section class="position-relative min-height-container my-3" id="home-tips">
+  <div class="container text-center">
+    <h1>TIPS DE ALIMENTACIÓN</h1>
+    <img class="img-fluid d-flex m-auto line-icon" src="https://vegus.cl/wp-content/themes/Vegus/sources/img/linea-division-tips.png" alt="Inicio">
+    <div class="text-center my-5">
+      <p>“Que tu alimento sea tu medicina y que tu medicina sea tu alimento” – <em>Hipócrates</em></p>
+    </div>
+
+    <!-- Carrusel de Tips -->
+    <div class="row">
+      <div class="col-12 galeriaTips owl-carousel py-3" id="galeriaTipsSlide">
+        <!-- Receta 1 -->
+        <div class="item p-3">
+          <div class="border-gray">
+            <a href="receta1.html">
+              <img src="https://vegus.cl/wp-content/uploads/2022/07/vegus-recetas-papasromero.jpg" class="d-block img-fluid w-100" alt="Papa rústicas al romero">
+            </a>
+            <div class="p-3 text-box">
+              <h4>Papa rústicas al romero</h4>
+              <p>INGREDIENTES: 1 kg papas, 1 cebolla pequeña, 2 dientes ajo...</p>
+              <a class="text-green" href="receta1.html">LEER MÁS</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Receta 2 -->
+        <div class="item p-3">
+          <div class="border-gray">
+            <a href="receta2.html">
+              <img src="https://vegus.cl/wp-content/uploads/2022/07/vegus-recetas-arrozespinacas.jpg" class="d-block img-fluid w-100" alt="Arroz Cremoso de Espinacas">
+            </a>
+            <div class="p-3 text-box">
+              <h4>Arroz Cremoso de Espinacas</h4>
+              <p>INGREDIENTES: 2 tazas arroz integral, 1/2 taza crema de leche...</p>
+              <a class="text-green" href="receta2.html">LEER MÁS</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Receta 3 -->
+        <div class="item p-3">
+          <div class="border-gray">
+            <a href="receta3.html">
+              <img src="https://vegus.cl/wp-content/uploads/2022/07/vegus-recetas-soparucula.jpg" class="d-block img-fluid w-100" alt="Crema de Rúcula">
+            </a>
+            <div class="p-3 text-box">
+              <h4>Crema de Rúcula</h4>
+              <p>INGREDIENTES: 100 g de Rúcula, 3 papas, 2 cebollas...</p>
+              <a class="text-green" href="receta3.html">LEER MÁS</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a class="btn-green d-inline-block my-5" href="recetas.html">VER MÁS</a>
+  </div>
+</section>
+
+
+
+</section>
+<footer style="background-image: url('https://vegus.cl/wp-content/themes/Vegus/sources/img/footer.jpg'); background-size: cover; background-position: bottom; height: 50vh;">
+    <div class="container text-center position-relative my-5 p-0">
+        <div class="row px-3 mx-0">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                
+                <p>Agrícola y Comercial Vegus Ltda. Líder en Univalle en el negocio de las hortalizas orgánicas</p>
+                <p>Cochabamba-Bolvia.</p>
+                <p>
+                    <a href="mailto:ventas@vegus.cl" class="texts-decoration-none">ventas@vegus.cl</a> / 
+                    <a href="tel:+56226594677" class="text-decoration-none">+56 2 2659 4677</a> / 
+                    <a href="tel:+56996314564" class="text-decoration-none">+56 9 9631 4564</a>
+                </p>
+                <img class="img-fluid d-flex m-auto my-5" src="https://vegus.cl/wp-content/themes/Vegus/sources/img/linea.png" alt="Línea de separación">
+                <div class="copyright">SUNNY VALLEY 2024 | Derechos Reservados</div>
+            </div>
+            <div class="col-lg-2">
+                <p class="text-center">Empresa certificada</p>
+               
+            </div>
+        </div>
+    </div>
+</footer>
+
+  
+</body>
+
+</body>
+</html>

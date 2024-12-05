@@ -1,0 +1,113 @@
+<?php
+// Incluir el archivo de conexión PDO
+include 'conexion/conexionPDO.php';
+
+try {
+    // Consulta a la tabla 'variables'
+    $consultaDatos_uid = $bd->query("SELECT * FROM datos_uid");
+    //$consultaVariables = $bd->query("SELECT * FROM variables WHERE DATE(FECHA) = CURDATE()");
+
+
+    $datos_uid = $consultaDatos_uid->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (Exception $e) {
+    echo "Error al realizar la consulta: " . $e->getMessage();
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de registros</title>
+    <style>
+        /* Estilos para el fondo de la página */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+            background: linear-gradient(to bottom, #4A90E2, #9B59B6); /* Fondo en tonos azul y morado */
+            color: #fff; /* Texto blanco para contraste */
+        }
+
+        /* Estilos para el título */
+        h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para la tabla */
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 60%;
+            border-radius: 8px; /* Bordes redondeados para la tabla */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        th, td {
+            border: 1px solid #fff; /* Bordes blancos */
+            padding: 12px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* Estilos para los encabezados de la tabla */
+        th {
+            background-color: #6A5ACD; /* Fondo morado para los encabezados */
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Estilos para las filas alternadas */
+        tr:nth-child(even) {
+            background-color: #8E44AD; /* Color morado más claro para filas pares */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #9B59B6; /* Color morado para filas impares */
+        }
+
+        /* Efecto de hover en las filas */
+        tr:hover {
+            background-color: #7D3C98; /* Color morado oscuro al pasar el ratón */
+            cursor: pointer;
+        }
+
+        /* Estilo para las celdas al pasar el ratón */
+        td {
+            transition: background-color 0.3s ease;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>Lista de ganado registrado</h2>
+<table>
+    <thead>
+        <tr>
+            <!-- estructura de la tabla 'variables' -->
+            
+            <th>ID</th>
+            <th>UID</th>
+            <th>Fecha de registro</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($datos_uid as $dato_uid): ?>
+        <tr>
+            
+            <td><?php echo htmlspecialchars($dato_uid['id']); ?></td>
+            <td><?php echo htmlspecialchars($dato_uid['UID']); ?></td>
+            <td><?php echo htmlspecialchars($dato_uid['fecha']); ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+</body>
+</html>

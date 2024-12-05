@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Control y Monitorización</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+    color: #fff;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Estilo para el menú de navegación */
+nav {
+    background-color: #27ae60; /* Verde para el menú */
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+nav .logo {
+    margin-right: 20px;
+}
+nav .menu {
+    display: inline-block;
+}
+nav .menu a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+nav .menu a:hover {
+    color: #d3e36b; /* Verde para hover */
+}
+
+.container {
+    max-width: 1200px;
+    display: flex;
+    background-color: rgba(52, 73, 94, 0.9);
+    border-radius: 15px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 150px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.text-section {
+    padding: 40px;
+    flex: 1;
+}
+
+.text-section h1 {
+    font-size: 3.5rem;
+    color: #d3e36b; /* Verde para el título */
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.text-section p {
+    color: #ddd;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.buttons {
+    margin-top: 40px;
+}
+
+.buttons button {
+    padding: 15px 30px;
+    margin-right: 20px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.btn-read {
+    background-color: #d3e36b; /* Verde brillante */
+    color: #34495e;
+    box-shadow: 0 5px 15px rgba(211, 227, 107, 0.4);
+}
+
+.btn-read:hover {
+    background-color: #c0d057;
+    transform: translateY(-3px);
+}
+
+.btn-write {
+    background-color: #27ae60; /* Verde para el botón de escribir */
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+.btn-write:hover {
+    background-color: #1e8449;
+    transform: translateY(-3px);
+}
+
+.image-section {
+    flex: 1;
+    background-image: url('https://proansa.com.mx/wp-content/uploads/2021/05/eflex_banner4-1.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.image-section:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Ajustes para el contenido posterior */
+#uid-display, #marca-display, #numero-display, #genero-display {
+    font-size: 1.3rem;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.section-post-related {
+    padding: 40px 0;
+    margin: 0;
+    width: 100%;
+}
+
+.section-related-ul {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.post-related {
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .post-related {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .post-related {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.post-related:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.image_frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.desc {
+    padding: 20px;
+    text-align: center;
+}
+
+.desc h4 {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+.desc h4 a {
+    color: #4ca1af; /* Verde para los enlaces */
+    text-decoration: none;
+}
+
+.desc h4 a:hover {
+    text-decoration: underline;
+}
+
+.desc .button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #27ae60; /* Verde para el botón */
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.desc .button:hover {
+    background-color: #1e8449;
+}
+
+.carousel-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.carousel-title h2 {
+    font-size: 2rem;
+    color: #d3e36b; /* Verde para el título */
+    font-weight: bold;
+}
+
+.modal-content {
+    color: black; /* Hace que todo el texto en el modal sea negro */
+}
+
+.center-text {
+    display: flex;
+    flex-direction: column; /* Asegura que cada elemento esté en su propia línea */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    text-align: center; /* Centrar el texto */
+    height: auto; /* Deja que la altura sea dinámica */
+    padding: 20px; /* Espaciado interno */
+    background-color: rgba(52, 73, 94, 0.9); /* Fondo */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra */
+    color: #fff;
+    font-weight: bold;
+}
+/* Botón "Volver" en la esquina superior izquierda */
+.volver-btn {
+    position: fixed; /* Fija el botón en la pantalla */
+    top: 20px; /* Posiciona el botón a 20px del borde superior */
+    left: 20px; /* Posiciona el botón a 20px del borde izquierdo */
+    background-color: #27ae60; /* Color verde */
+    color: #fff; /* Texto blanco */
+    padding: 12px 24px; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Aparece como un puntero al pasar el mouse */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    z-index: 9999
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Menú de navegación con logo al principio -->
+<!-- Menú de navegación con logo al principio -->
+
+
+    <nav>
+        <div class="logo">
+            <img src="Univaller.png" alt="Logo" width="50" height="50"> <!-- Reemplaza con tu logo -->
+        </div>
+        <div class="menu">
+            <a href="eventos.php" target="_blank">Ver Eventos</a>
+            <a href="lectura.php" target="_blank">Ver lista de ganado bovino</a>
+            <a href="registro.php" target="_blank">Ver lista de ganado Registrado</a>
+           
+        </div>
+    </nav>
+
+
+    <!-- Resto del contenido de la página -->
+    <div class="container">
+        <!-- Contenido de la página aquí -->
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- Modal para introducir datos del nuevo animal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="color: black;"> <!-- Aplicar color negro a todo el contenido del modal -->
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Introducir datos del nuevo animal</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="animalForm">
+          <div class="mb-3">
+            <label for="marca" class="form-label">Marca</label>
+            <input type="text" class="form-control" id="marca" required>
+          </div>
+          <div class="mb-3">
+            <label for="numero" class="form-label">Número</label>
+            <input type="number" class="form-control" id="numero" required>
+          </div>
+          <div class="mb-3">
+            <label for="genero" class="form-label">Género</label>
+            <input type="text" class="form-control" id="genero" required>
+          </div>
+          <!--<div class="mb-3">
+            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fechaNacimiento" required>
+          </div>-->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnAceptar">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+        <div class="text-section">
+            <h1>SISTEMA DE REGISTRO Y GESTION DE GANADO BOBINO</h1>
+            <p>Bienvenidos al sistema de registro de ganado bobino utilizando tecnologia RFID</p>
+            <div class="buttons">
+                <button class="btn-read" id="encender"><i class="fas fa-book-reader"></i> MODO LECTURA</button>
+                <button class="btn-write" id="apagar"><i class="fas fa-edit"></i> MODO ESCRITURA</button>
+            </div>
+        </div>
+        <div class="image-section"></div>
+    </div>
+
+    <div class="container mt-5 center-text">
+        <h4>ÚLTIMOLTIMO DATO LEIDO</h4>
+        <p id="uid-display">UID: --</p>
+        <p id="marca-display">MARCA: --</p>
+        <p id="numero-display">NUMERO: --</p>
+        <p id="genero-display">GENERO: --</p>
+    </div>
+
+    <p id="status" class="error"></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <!-- Título del carrusel -->
+        <div class="carousel-title">
+            <h2>Pasos de Uso</h2>
+        </div>
+
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="RFID1.jpg" class="d-block img-fluid mx-auto" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Primer paso</h5>
+                    <p>Realizamos el registro</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="lect.jpeg" class="d-block img-fluid mx-auto" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Segundo paso</h5>
+                    <p>Realizamos la lectura para serciorarnos que realmente se registro en el anterior paso.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="reg.png" class="d-block img-fluid mx-auto" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Tercer paso</h5>
+                    <p>Operamos en las dos fucionalidades, tanto registro como lectura.</p>
+                </div>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+
+
+    <div class="section section-post-related">
+    <div class="section_wrapper clearfix">
+        <div class="section-related-adjustment simple">
+            <h4>INFORMACON RELACIONADA</h4>
+            <div class="section-related-ul col-3">
+
+                <!-- Artículo 1 -->
+                <div class="column post-related post-1980">
+                    <div class="single-photo-wrapper images-only">
+                        <div class="image_frame scale-with-grid">
+                            <div class="image_wrapper">
+                                <a href="http://www.paymarkfast.com/rfid-digitaliza-la-ganaderia/">
+                                    <div class="mask"></div>
+                                    <img 
+                                        width="960" 
+                                        height="720" 
+                                        src="http://www.paymarkfast.com/wp-content/uploads/2020/03/sds_small_image2.jpg" 
+                                        class="scale-with-grid wp-post-image" 
+                                        alt="" 
+                                        loading="lazy"
+                                    >
+                                </a>
+                                <div class="image_links double">
+                                    <a href="http://www.paymarkfast.com/wp-content/uploads/2020/03/sds_small_image2.jpg" 
+                                       class="zoom" 
+                                       rel="lightbox" 
+                                       data-type="image">
+                                        <i class="icon-search"></i>
+                                    </a>
+                                    <a href="http://www.paymarkfast.com/rfid-digitaliza-la-ganaderia/" class="link">
+                                        <i class="icon-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date_label">31 marzo, 2024</div>
+                    <div class="desc">
+                        <h4>
+                            <a href="http://www.paymarkfast.com/rfid-digitaliza-la-ganaderia/">
+                            El RFID digitaliza la ganadería
+                            </a>
+                        </h4>
+                        <hr class="hr_color">
+                        <a href="http://www.paymarkfast.com/rfid-digitaliza-la-ganaderia/" 
+                           class="button button_left button_js kill_the_icon">
+                            <span class="button_icon">
+                                <i class="icon-layout"></i>
+                            </span>
+                            <span class="button_label">Leer más</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Artículo 2 -->
+                <div class="column post-related post-2026">
+                    <div class="single-photo-wrapper images-only">
+                        <div class="image_frame scale-with-grid">
+                            <div class="image_wrapper">
+                                <a href="http://www.paymarkfast.com/etiqueta-tag-transponder-rfid/">
+                                    <div class="mask"></div>
+                                    <img 
+                                        width="960" 
+                                        height="485" 
+                                        src="http://www.paymarkfast.com/wp-content/uploads/2020/03/lab_innovation-960x485.jpg" 
+                                        class="scale-with-grid wp-post-image" 
+                                        alt="" 
+                                        loading="lazy"
+                                    >
+                                </a>
+                                <div class="image_links double">
+                                    <a href="http://www.paymarkfast.com/wp-content/uploads/2020/03/lab_innovation-1024x449.jpg" 
+                                       class="zoom" 
+                                       rel="lightbox" 
+                                       data-type="image">
+                                        <i class="icon-search"></i>
+                                    </a>
+                                    <a href="http://www.paymarkfast.com/etiqueta-tag-transponder-rfid/" class="link">
+                                        <i class="icon-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date_label">27 marzo, 2024</div>
+                    <div class="desc">
+                        <h4>
+                            <a href="http://www.paymarkfast.com/etiqueta-tag-transponder-rfid/">
+                                Etiquetas RFID
+                            </a>
+                        </h4>
+                        <hr class="hr_color">
+                        <a href="http://www.paymarkfast.com/etiqueta-tag-transponder-rfid/" 
+                           class="button button_left button_js kill_the_icon">
+                            <span class="button_icon">
+                                <i class="icon-layout"></i>
+                            </span>
+                            <span class="button_label">Leer más</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Artículo 3 -->
+                <div class="column post-related post-2057">
+                    <div class="single-photo-wrapper images-only">
+                        <div class="image_frame scale-with-grid">
+                            <div class="image_wrapper">
+                                <a href="https://f5.com.bo/producto/control-de-ganado-por-rfid/">
+                                    <div class="mask"></div>
+                                    <img 
+                                        width="960" 
+                                        height="700" 
+                                        src="https://f5.com.bo/wp-content/uploads/2022/06/RFID-para-ganaderia.jpg" 
+                                        class="scale-with-grid wp-post-image" 
+                                        alt="" 
+                                        loading="lazy"
+                                    >
+                                </a>
+                                <div class="image_links double">
+                                    <a href="https://f5.com.bo/wp-content/uploads/2022/06/RFID-para-ganaderia.jpg" 
+                                       class="zoom" 
+                                       rel="lightbox" 
+                                       data-type="image">
+                                        <i class="icon-search"></i>
+                                    </a>
+                                    <a href="https://f5.com.bo/producto/control-de-ganado-por-rfid/" class="link">
+                                        <i class="icon-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date_label">26 marzo, 2024</div>
+                    <div class="desc">
+                        <h4>
+                            <a href="https://f5.com.bo/producto/control-de-ganado-por-rfid/">
+                                Control de ganado con RFID
+                            </a>
+                        </h4>
+                        <hr class="hr_color">
+                        <a href="https://f5.com.bo/producto/control-de-ganado-por-rfid/" 
+                           class="button button_left button_js kill_the_icon">
+                            <span class="button_icon">
+                                <i class="icon-layout"></i>
+                            </span>
+                            <span class="button_label">Leer más</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <button class="volver-btn" onclick="window.history.back();">Volver</button>
+
+
+    <!-- Pie de pagina (footer) -->
+    <footer class="seccion-oscura d-flex flex-column align-items-center justify-content-center"> 
+      <p class="footer-texto text-center">SISTEMA DE REGISTRO Y GESTION DE GANADO BOBINO</p>
+      <div class="iconos-redes-sociales d-flex flex-wrap align-items-center justify-content-center">
+        <a href="https://twitter.com/freecodecampES" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-twitter"></i>
+        </a>
+        <a href="https://github.com/freeCodeCamp/freeCodeCamp" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com/freecodecamp/" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-instagram"></i>
+        </a>
+        <a href="mailto:janedoe@micorreo.com" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-envelope"></i>
+        </a>
+      </div>
+      <div class="derechos-de-autor">Creado por Roly Serrano (2024) &#169;</div>
+    </footer>
+	
+</div>		
+</div>
+
+
+   
+<script>
+    let ws;
+    const statusElement = document.getElementById('status');
+    
+    // Función para establecer la conexión WebSocket
+    function connectWebSocket() {
+        ws = new WebSocket('ws://192.168.19.238:35350');
+
+        ws.onopen = () => {
+            console.log('Conectado al servidor WebSocket');
+            statusElement.innerText = ''; // Limpiar el estado de error al conectar
+        };
+
+        ws.onmessage = (event) => {
+            console.log("Mensaje recibido:", event.data); // Esto mostrará exactamente lo que se recibe
+            const message = event.data;
+
+            // Si se recibe un UID, mostrar el modal para introducir los datos del nuevo animal
+            if (message.startsWith("UID:")) {
+                const uid = message.split(":")[1];
+                document.getElementById('uid-display').innerText = `UID: ${uid}`;
+                const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                modal.show();
+            } else {
+                // Recibir datos de marca, numero, genero del servidor
+                const [uid, marca, numero, genero] = message.split('/');
+                document.getElementById('uid-display').innerText = `Uid: ${uid}  `;
+                document.getElementById('marca-display').innerText = `Marca: ${marca}  `;
+                document.getElementById('numero-display').innerText = `Numero: ${numero}  `;
+                document.getElementById('genero-display').innerText = `Genero: ${genero}  `;
+            }
+        };
+
+        ws.onclose = () => {
+            console.log('Conexión cerrada, intentando reconectar...');
+            statusElement.innerText = 'Conexión cerrada, intentando reconectar...';
+            setTimeout(connectWebSocket, 3000);  // Intentar reconectar cada 3 segundos
+        };
+
+        ws.onerror = (error) => {
+            console.error('Error en WebSocket:', error);
+            statusElement.innerText = 'Error en WebSocket, revisa la consola para más detalles.';
+        };
+    }
+
+    // Conectar al WebSocket cuando se cargue la página
+    connectWebSocket();
+
+    // Botones para encender y apagar el LED
+    document.getElementById('encender').addEventListener('click', () => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send('1');  // Enviar comando para modo lectura
+        } else {
+            statusElement.innerText = 'No conectado al WebSocket, no se puede enviar comando.';
+        }
+    });
+
+    document.getElementById('apagar').addEventListener('click', () => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send('2');  // Enviar comando para modo escritura
+        } else {
+            statusElement.innerText = 'No conectado al WebSocket, no se puede enviar comando.';
+        }
+    });
+
+    // Manejar la aceptación del formulario
+    document.getElementById('btnAceptar').addEventListener('click', () => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            const marca = document.getElementById('marca').value;
+            const numero = document.getElementById('numero').value;
+            const genero = document.getElementById('genero').value;
+            //const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+
+            // Enviar los datos concatenados al servidor
+            const dataToSend = `${marca}/${numero}/${genero}`;
+            ws.send(dataToSend);
+
+            // Cerrar el modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+            modal.hide();
+        } else {
+            statusElement.innerText = 'No conectado al WebSocket, no se puede enviar datos.';
+        }
+    });
+</script>
+
+</body>
+</html>
